@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhupesh sah g</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">My Website</h1>
+      <ul class="flex space-x-6 font-medium">
+        <li><a href="#home" class="hover:text-blue-500">Home</a></li>
+        <li><a href="#about" class="hover:text-blue-500">About Us</a></li>
+        <li><a href="#gallery" class="hover:text-blue-500">Gallery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero / Home -->
+  <section id="home" class="h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100">
+    <div class="text-center px-6">
+      <h2 class="text-4xl font-bold mb-4">Welcome to Our Gallery</h2>
+      <p class="text-gray-600">Sharing our journey through photos and stories.</p>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="max-w-7xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-semibold text-center mb-10">About Us</h2>
+    <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+     hi i am bhupesh kumar in bihar,<br>
+     this is my first webpage and i am learning web development.
+    </p>
+
+    <!-- Nickname section -->
+    <h3 class="text-2xl font-semibold mb-6">Nick name</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+      <div class="p-4 bg-white rounded-2xl shadow">Bhupesh sah</div>
+      <div class="p-4 bg-white rounded-2xl shadow">Bhupesh g</div>
+      <div class="p-4 bg-white rounded-2xl shadow">Bhupesh kumar</div>
+      <div class="p-4 bg-white rounded-2xl shadow">sah g</div>
+      <div class="p-4 bg-white rounded-2xl shadow">...</div>
+    </div>
+  </section>
+
+
+
+<!-- Gallery -->
+<section id="gallery" class="bg-white py-16 px-6">
+  <h2 class="text-3xl font-semibold text-center mb-10">Gallery</h2>
+
+  <!-- Gallery Grid -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4" id="galleryGrid"></div>
+
+  <!-- Fullscreen Modal -->
+  <div id="photoModal" 
+       class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
+    <!-- Close button -->
+    <span class="absolute top-5 right-8 text-white text-3xl cursor-pointer" onclick="closePhoto()">&times;</span>
+    
+    <!-- Large Image -->
+    <img id="modalImg" class="max-h-[90%] max-w-[90%] rounded-xl shadow-lg">
+  </div>
+
+  <script>
+    // ✅ आपकी Google Drive images
+    const photos = [
+      "https://drive.google.com/uc?export=view&id=1zv8SWEY989YKNw-8fc_G6EN2dKEK-4xT",
+      "https://drive.google.com/uc?export=view&id=1q4ldCfN_X94R0Iawv1IonlimUg9Gy99I",
+      "https://drive.google.com/uc?export=view&id=1BN_9IvCiZIQkbgV_FidrWaFhqCiB5OiC",
+      "https://drive.google.com/uc?export=view&id=1gZbRs3kYO2yJnqbJv_uDN0-AQPEpdYCU",
+      "https://drive.google.com/uc?export=view&id=1gZbRs3kYO2yJnqbJv_uDN0-AQPEpdYCU",
+      "https://drive.google.com/uc?export=view&id=15UO3SX6u2mWLJJZBQi3PaMZanZoWbehe",
+      "https://drive.google.com/uc?export=view&id=1B8DMio7cxmMSk-WgmfZAGqdcYfQ0AKIi",
+      "https://drive.google.com/uc?export=view&id=1B8DMio7cxmMSk-WgmfZAGqdcYfQ0AKIi",
+      "https://drive.google.com/uc?export=view&id=1JxsXm88vwU89itQ98v2xAz6arqgebIuE",
+      "https://drive.google.com/uc?export=view&id=1-YYZUdOW37tF-6nIgOrOxbAs300tBMyQ",
+      "https://drive.google.com/uc?export=view&id=128ix8v5NPXlyrr_eAs47QvAmYrGo7bUl",
+      "https://drive.google.com/uc?export=view&id=1nZYZuxonbsFrQJpBsEwB9T2GeAKc7K8L",
+      "https://drive.google.com/uc?export=view&id=1XKCiByAjYzrWG3KU7CI5w-1zGILv8D4D",
+      "https://drive.google.com/uc?export=view&id=1XKCiByAjYzrWG3KU7CI5w-1zGILv8D4D",
+      "https://drive.google.com/uc?export=view&id=1eASg_pbMUncjZWKwYTAzskkT481NwGH4",
+      "https://drive.google.com/uc?export=view&id=1-3p7m7Q65E1uHNwJXc1RtTjtgg_7EndY",
+      "https://drive.google.com/uc?export=view&id=1ugCFEiXTBv15dA-j0_vDawGYpnnUcDFa",
+      "https://drive.google.com/uc?export=view&id=1M8C_lqbzkHrlG6_rCyLZZcle5uDdrPtB"
+    ];
+
+    // ✅ Gallery में images add करना
+    const gallery = document.getElementById("galleryGrid");
+    photos.forEach((link, index) => {
+      const img = document.createElement("img");
+      img.src = link;
+      img.alt = "Photo " + (index + 1);
+      img.className = "rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover";
+      img.onclick = () => openPhoto(link);
+      gallery.appendChild(img);
+    });
+
+    // ✅ Fullscreen Modal functions
+    function openPhoto(src) {
+      document.getElementById("photoModal").style.display = "flex";
+      document.getElementById("modalImg").src = src;
+    }
+
+    function closePhoto() {
+      document.getElementById("photoModal").style.display = "none";
+    }
+  </script>
+</section>
+
+
+
+ 
+ 
+ 
+ 
+  <!-- Contact Us -->
+  <section id="contact" class="max-w-4xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-semibold text-center mb-10">Contact Us</h2>
+    <form onsubmit="sendWhatsApp(event)" class="space-y-6 bg-white p-8 rounded-2xl shadow">
+      <input type="text" id="name" placeholder="Your Name" required 
+             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <input type="email" id="email" placeholder="Your Email" required
+             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <input type="tel" id="mobile" placeholder="Your Mobile Number" required
+             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <textarea id="message" placeholder="Your Message" rows="4" required
+             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+      <button type="submit" 
+              class="bg-blue-500 text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition w-full">
+        Send via WhatsApp
+      </button>
+    </form>
+  </section>
+
+  <!-- Social Media -->
+  <section class="py-12 px-6 text-center bg-gray-100">
+    <h2 class="text-2xl font-semibold mb-6">Follow Us</h2>
+    <div class="flex justify-center gap-6 text-3xl text-gray-600">
+      <a href="https://www.facebook.com/share/1F7Sa4Jmku/" target="_blank" class="hover:text-blue-500"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/bhupeshg71?igsh=NGh3NHNjNzFmbzRm" target="_blank" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-6">
+    <p>&copy; 2025 Our Gallery. All rights reserved.</p>
+  </footer>
+
+  <!-- WhatsApp Integration -->
+  <script>
+    function sendWhatsApp(event) {
+      event.preventDefault();
+      const name = sanitize(document.getElementById("name").value);
+      const email = sanitize(document.getElementById("email").value);
+      const mobile = sanitize(document.getElementById("mobile").value);
+      const message = sanitize(document.getElementById("message").value);
+
+      const whatsappNumber = "919153631109"; // your WhatsApp number
+      const text = Hello, my name is ${name}.%0AEmail: ${email}%0AMobile: ${mobile}%0AMessage: ${message};
+      const url = https://wa.me/${whatsappNumber}?text=${text};
+      window.open(url, "_blank");
+    }
+
+    // Secure sanitization function
+    function sanitize(input) {
+      return input.replac1file.htmle(/[<>"'(){};]/g, ""); // remove dangerous characters
+    }
+  </script>
+
+</body>
+</html>
