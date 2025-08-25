@@ -53,69 +53,156 @@
 <section id="gallery" class="bg-white py-16 px-6">
   <h2 class="text-3xl font-semibold text-center mb-10">Gallery</h2>
 
-  <!-- Gallery Grid (10 Images) -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+  <!-- Gallery Grid -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
     
-    <img src="1.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="2.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="3.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-    
-    <img src="4.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="5.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="6.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="7.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="8.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="9.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
-    <img src="10.jpg" 
-         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
-         onclick="openPhoto(this.src)">
-         
+    <!-- Image 1 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="1.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="2.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 3 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="3.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 4 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="4.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 5 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="5.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 6 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="6.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 7 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="7.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 8 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="8.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 9 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="9.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
+    <!-- Image 10 -->
+    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
+      <div class="screen">
+        <img src="10.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
+        <span class="gloss"></span>
+      </div>
+      <span class="notch"></span>
+    </div>
+
   </div>
-
-  <!-- Fullscreen Modal -->
-  <div id="photoModal" 
-       class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
-    <span class="absolute top-5 right-8 text-white text-3xl cursor-pointer" onclick="closePhoto()">&times;</span>
-    <img id="modalImg" class="max-h-[90%] max-w-[90%] rounded-xl shadow-lg">
-  </div>
-
-  <script>
-    function openPhoto(src) {
-      document.getElementById("photoModal").style.display = "flex";
-      document.getElementById("modalImg").src = src;
-    }
-
-    function closePhoto() {
-      document.getElementById("photoModal").style.display = "none";
-    }
-  </script>
 </section>
+
+<!-- Premium Mobile Frame CSS -->
+<style>
+  .device {
+    position: relative;
+    border-radius: 28px;
+    padding: 12px;
+    background: linear-gradient(135deg, #9AE6B4, #60A5FA, #C084FC);
+    box-shadow: 0 12px 30px rgba(0,0,0,.18), 0 6px 14px rgba(0,0,0,.1);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .device:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.22), 0 8px 18px rgba(0,0,0,.12);
+  }
+  .device > .screen {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #0b0b0b;
+  }
+  .device .gloss {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0) 40%);
+    pointer-events: none;
+  }
+  .device::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 30px;
+    background: radial-gradient(80% 80% at 20% 0%, rgba(255,255,255,.35), rgba(255,255,255,0) 60%);
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
+  }
+  .device:hover::after { opacity: .6; }
+  .device .notch {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 18px;
+    width: 120px;
+    background: #0b0b0b;
+    border-radius: 0 0 14px 14px;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,.06);
+    z-index: 2;
+  }
+</style>
 
  
  
@@ -269,6 +356,7 @@
 </body>
 
 </html>
+
 
 
 
