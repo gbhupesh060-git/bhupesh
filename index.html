@@ -25,7 +25,7 @@
   <section id="home" class="h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100">
     <div class="text-center px-6">
       <h2 class="text-4xl font-bold mb-4">Welcome to Our Gallery</h2>
-      <p class="text-gray-600">Sharing our journey through photos and stories.</p>
+      <p class="text-gray-600"> Bhupesh kumar sah.</p>
     </div>
   </section>
 
@@ -54,54 +54,59 @@
 <section id="gallery" class="bg-white py-16 px-6">
   <h2 class="text-3xl font-semibold text-center mb-10">Gallery</h2>
 
-  <!-- Gallery Grid -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4" id="galleryGrid"></div>
+  <!-- Gallery Grid (10 Images) -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+    
+    <img src="1.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="2.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="3.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+    
+    <img src="4.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="5.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="6.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="7.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="8.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="9.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+    <img src="10.jpg" 
+         class="rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover"
+         onclick="openPhoto(this.src)">
+         
+  </div>
 
   <!-- Fullscreen Modal -->
   <div id="photoModal" 
        class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
-    <!-- Close button -->
     <span class="absolute top-5 right-8 text-white text-3xl cursor-pointer" onclick="closePhoto()">&times;</span>
-    
-    <!-- Large Image -->
     <img id="modalImg" class="max-h-[90%] max-w-[90%] rounded-xl shadow-lg">
   </div>
 
   <script>
-    // ✅ आपकी Google Drive images
-    const photos = [
-      "https://drive.google.com/uc?export=view&id=1zv8SWEY989YKNw-8fc_G6EN2dKEK-4xT",
-      "https://drive.google.com/uc?export=view&id=1q4ldCfN_X94R0Iawv1IonlimUg9Gy99I",
-      "https://drive.google.com/uc?export=view&id=1BN_9IvCiZIQkbgV_FidrWaFhqCiB5OiC",
-      "https://drive.google.com/uc?export=view&id=1gZbRs3kYO2yJnqbJv_uDN0-AQPEpdYCU",
-      "https://drive.google.com/uc?export=view&id=1gZbRs3kYO2yJnqbJv_uDN0-AQPEpdYCU",
-      "https://drive.google.com/uc?export=view&id=15UO3SX6u2mWLJJZBQi3PaMZanZoWbehe",
-      "https://drive.google.com/uc?export=view&id=1B8DMio7cxmMSk-WgmfZAGqdcYfQ0AKIi",
-      "https://drive.google.com/uc?export=view&id=1B8DMio7cxmMSk-WgmfZAGqdcYfQ0AKIi",
-      "https://drive.google.com/uc?export=view&id=1JxsXm88vwU89itQ98v2xAz6arqgebIuE",
-      "https://drive.google.com/uc?export=view&id=1-YYZUdOW37tF-6nIgOrOxbAs300tBMyQ",
-      "https://drive.google.com/uc?export=view&id=128ix8v5NPXlyrr_eAs47QvAmYrGo7bUl",
-      "https://drive.google.com/uc?export=view&id=1nZYZuxonbsFrQJpBsEwB9T2GeAKc7K8L",
-      "https://drive.google.com/uc?export=view&id=1XKCiByAjYzrWG3KU7CI5w-1zGILv8D4D",
-      "https://drive.google.com/uc?export=view&id=1XKCiByAjYzrWG3KU7CI5w-1zGILv8D4D",
-      "https://drive.google.com/uc?export=view&id=1eASg_pbMUncjZWKwYTAzskkT481NwGH4",
-      "https://drive.google.com/uc?export=view&id=1-3p7m7Q65E1uHNwJXc1RtTjtgg_7EndY",
-      "https://drive.google.com/uc?export=view&id=1ugCFEiXTBv15dA-j0_vDawGYpnnUcDFa",
-      "https://drive.google.com/uc?export=view&id=1M8C_lqbzkHrlG6_rCyLZZcle5uDdrPtB"
-    ];
-
-    // ✅ Gallery में images add करना
-    const gallery = document.getElementById("galleryGrid");
-    photos.forEach((link, index) => {
-      const img = document.createElement("img");
-      img.src = link;
-      img.alt = "Photo " + (index + 1);
-      img.className = "rounded-xl shadow hover:scale-105 transition cursor-pointer w-full h-48 object-cover";
-      img.onclick = () => openPhoto(link);
-      gallery.appendChild(img);
-    });
-
-    // ✅ Fullscreen Modal functions
     function openPhoto(src) {
       document.getElementById("photoModal").style.display = "flex";
       document.getElementById("modalImg").src = src;
@@ -112,8 +117,6 @@
     }
   </script>
 </section>
-
-
 
  
  
@@ -174,4 +177,5 @@
   </script>
 
 </body>
+
 </html>
