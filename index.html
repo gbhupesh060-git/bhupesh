@@ -50,159 +50,88 @@
 
 
 <!-- Gallery -->
-<section id="gallery" class="bg-white py-16 px-6">
+<section id="gallery" class="py-16 px-6 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
   <h2 class="text-3xl font-semibold text-center mb-10">Gallery</h2>
 
   <!-- Gallery Grid -->
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-    
-    <!-- Image 1 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="1.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 2 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="2.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 3 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="3.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 4 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="4.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 5 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="5.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 6 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="6.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 7 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="7.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 8 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="8.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 9 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="9.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
-    <!-- Image 10 -->
-    <div class="device mx-auto w-full max-w-[260px] aspect-[9/16]">
-      <div class="screen">
-        <img src="10.jpg" class="h-full w-full object-cover" onclick="openPhoto(this.src)" />
-        <span class="gloss"></span>
-      </div>
-      <span class="notch"></span>
-    </div>
-
+    <div class="image-box"><img src="1.jpg" onclick="openGallery(0)" /></div>
+    <div class="image-box"><img src="2.jpg" onclick="openGallery(1)" /></div>
+    <div class="image-box"><img src="3.jpg" onclick="openGallery(2)" /></div>
+    <div class="image-box"><img src="4.jpg" onclick="openGallery(3)" /></div>
+    <div class="image-box"><img src="5.jpg" onclick="openGallery(4)" /></div>
+    <div class="image-box"><img src="6.jpg" onclick="openGallery(5)" /></div>
+    <div class="image-box"><img src="7.jpg" onclick="openGallery(6)" /></div>
+    <div class="image-box"><img src="8.jpg" onclick="openGallery(7)" /></div>
+    <div class="image-box"><img src="9.jpg" onclick="openGallery(8)" /></div>
+    <div class="image-box"><img src="10.jpg" onclick="openGallery(9)" /></div>
   </div>
 </section>
 
-<!-- Premium Mobile Frame CSS -->
+<!-- Fullscreen Gallery Modal -->
+<div id="galleryModal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50">
+  <button onclick="closeGallery()" class="absolute top-4 right-6 text-white text-3xl font-bold">&times;</button>
+  
+  <!-- Scrollable Image Container -->
+  <div class="overflow-x-auto whitespace-nowrap w-full h-full flex items-center justify-start space-x-4 px-6 py-10">
+    <img src="1.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="2.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="3.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="4.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="5.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="6.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="7.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="8.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="9.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    <img src="10.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+  </div>
+</div>
+
+<!-- CSS -->
 <style>
-  .device {
-    position: relative;
-    border-radius: 28px;
-    padding: 12px;
-    background: linear-gradient(135deg, #9AE6B4, #60A5FA, #C084FC);
-    box-shadow: 0 12px 30px rgba(0,0,0,.18), 0 6px 14px rgba(0,0,0,.1);
-    transition: transform .3s ease, box-shadow .3s ease;
-  }
-  .device:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(0,0,0,.22), 0 8px 18px rgba(0,0,0,.12);
-  }
-  .device > .screen {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    border-radius: 22px;
+  .image-box {
     overflow: hidden;
-    background: #0b0b0b;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .device .gloss {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0) 40%);
-    pointer-events: none;
+  .image-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    cursor: pointer;
   }
-  .device::after {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: 30px;
-    background: radial-gradient(80% 80% at 20% 0%, rgba(255,255,255,.35), rgba(255,255,255,0) 60%);
-    filter: blur(10px);
-    opacity: 0;
-    transition: opacity .3s ease;
-    pointer-events: none;
+  .image-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
   }
-  .device:hover::after { opacity: .6; }
-  .device .notch {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 18px;
-    width: 120px;
-    background: #0b0b0b;
-    border-radius: 0 0 14px 14px;
-    box-shadow: inset 0 -1px 0 rgba(255,255,255,.06);
-    z-index: 2;
+  .fullscreen-img {
+    transition: transform 0.3s ease;
+    cursor: grab;
+  }
+  .fullscreen-img:hover {
+    transform: scale(1.02);
   }
 </style>
+
+<!-- JavaScript -->
+<script>
+  function openGallery(index) {
+    const modal = document.getElementById("galleryModal");
+    modal.classList.remove("hidden");
+
+    // Scroll to selected image
+    const images = modal.querySelectorAll(".fullscreen-img");
+    if (images[index]) {
+      images[index].scrollIntoView({ behavior: "smooth", inline: "center" });
+    }
+  }
+
+  function closeGallery() {
+    document.getElementById("galleryModal").classList.add("hidden");
+  }
+</script>
 
  
  
@@ -356,6 +285,7 @@
 </body>
 
 </html>
+
 
 
 
