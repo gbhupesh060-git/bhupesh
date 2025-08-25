@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- 🔐 Security Meta Headers -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; 
+                 img-src 'self' data: https:;
+                 style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
+                 script-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com 'unsafe-inline';
+                 font-src 'self' https://cdnjs.cloudflare.com;
+                 frame-ancestors 'none';
+                 upgrade-insecure-requests;">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Secure Site</h1>
+      <ul class="flex space-x-6 font-medium">
+        <li><a href="#home" class="hover:text-blue-500">Home</a></li>
+        <li><a href="#about" class="hover:text-blue-500">About</a></li>
+        <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100">
+    <div class="text-center px-6">
+      <h2 class="text-4xl font-bold mb-4">Welcome to Secure Website</h2>
+      <p class="text-gray-600">All protections are enabled 🔒</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="max-w-4xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-semibold text-center mb-10">Contact Us</h2>
+    <form onsubmit="sendWhatsApp(event)" class="space-y-6 bg-white p-8 rounded-2xl shadow">
+      <input type="text" id="name" placeholder="Your Name" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <input type="email" id="email" placeholder="Your Email" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <input type="tel" id="mobile" placeholder="Your Mobile Number" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <textarea id="message" placeholder="Your Message" rows="4" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+      <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition w-full">
+        Send via WhatsApp
+      </button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-6">
+    <p>&copy; 2025 Secure Website. All rights reserved.</p>
+  </footer>
+
+  <!-- 🔐 Security Script -->
+  <script>
+    // Sanitize input
+    function sanitize(input) {
+      return input.replace(/[^a-zA-Z0-9 @._-]/g, "");
+    }
+
+    // WhatsApp number hidden (Base64 encoded)
+    function getWhatsAppNumber() {
+      return atob("OTE5MTUzNjMxMTA5"); // change this with your encoded number
+    }
+
+    // Send WhatsApp message
+    function sendWhatsApp(event) {
+      event.preventDefault();
+      const name = sanitize(document.getElementById("name").value);
+      const email = sanitize(document.getElementById("email").value);
+      const mobile = sanitize(document.getElementById("mobile").value);
+      const message = sanitize(document.getElementById("message").value);
+
+      const text = `Hello, my name is ${name}.%0AEmail: ${email}%0AMobile: ${mobile}%0AMessage: ${message}`;
+      const url = `https://wa.me/${getWhatsAppNumber()}?text=${text}`;
+      window.open(url, "_blank");
+    }
+
+    // Disable Right Click
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Disable Shortcut Keys (Ctrl+U, Ctrl+S, Ctrl+C)
+    document.onkeydown = function(e) {
+      if (e.ctrlKey && (e.key === "u" || e.key === "s" || e.key === "c")) {
+        e.preventDefault();
+      }
+    };
+  </script>
+</body>
+</html>
