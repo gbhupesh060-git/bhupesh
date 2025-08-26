@@ -133,6 +133,61 @@
   }
 </script>
 
+
+  <!-- 🔒 Pravit Img Option -->
+<section class="py-16 px-6 text-center">
+  <button onclick="showPasswordModal()" 
+          class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl shadow-lg hover:scale-105 transition">
+    Pravit Img
+  </button>
+</section>
+
+<!-- Password Modal -->
+<div id="passwordModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+  <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center relative">
+    <h2 class="text-xl font-semibold mb-4">🔒 Enter Password</h2>
+    <input type="password" id="passwordInput" 
+           class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-400" 
+           placeholder="Enter password here..." />
+    <div class="flex justify-center space-x-4">
+      <button onclick="checkPassword()" 
+              class="px-6 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 transition">
+        Submit
+      </button>
+      <button onclick="closePasswordModal()" 
+              class="px-6 py-2 bg-gray-300 rounded-lg shadow hover:bg-gray-400 transition">
+        Cancel
+      </button>
+    </div>
+    <button onclick="closePasswordModal()" 
+            class="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl">&times;</button>
+  </div>
+</div>
+
+<script>
+  function showPasswordModal() {
+    document.getElementById("passwordModal").classList.remove("hidden");
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("passwordInput").focus();
+  }
+
+  function closePasswordModal() {
+    document.getElementById("passwordModal").classList.add("hidden");
+  }
+
+  function checkPassword() {
+    const pass = document.getElementById("passwordInput").value.trim();
+    closePasswordModal();
+
+    if (pass === "bhupesh gunja sah") {
+      window.open("pravit.jpg", "_blank"); // ✅ सही पासवर्ड
+    } else {
+      window.open("1.jpg", "_blank");      // ❌ गलत पासवर्ड
+    }
+  }
+</script>
+
+
  
  
  
@@ -285,6 +340,7 @@
 </body>
 
 </html>
+
 
 
 
