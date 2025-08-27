@@ -3,130 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bhupesh Gallery</title>
+  <title>My Gallery Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    .image-box {
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .image-box img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      cursor: pointer;
+    }
+    .image-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    }
+    .fullscreen-img {
+      transition: transform 0.3s ease;
+      cursor: grab;
+    }
+    .fullscreen-img:hover {
+      transform: scale(1.02);
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- HEADER -->
-  <header class="fixed top-0 left-0 w-full bg-white shadow z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
-      <h1 class="text-2xl font-bold text-purple-600">📸 Bhupesh Gallery</h1>
-      <nav class="hidden md:flex space-x-6 font-medium">
-        <a href="#home" class="hover:text-purple-600">Home</a>
-        <a href="#about" class="hover:text-purple-600">About</a>
-        <a href="#gallery" class="hover:text-purple-600">Gallery</a>
-        <a href="#contact" class="hover:text-purple-600">Contact</a>
+  <!-- 🔹 Navbar -->
+  <header class="bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg fixed w-full top-0 left-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+      <h1 class="text-2xl font-bold">🌸 My Gallery</h1>
+      <nav class="hidden md:flex space-x-6 text-lg">
+        <a href="#home" class="hover:text-yellow-300">Home</a>
+        <a href="#about" class="hover:text-yellow-300">About</a>
+        <a href="#gallery" class="hover:text-yellow-300">Gallery</a>
+        <a href="#contact" class="hover:text-yellow-300">Contact</a>
       </nav>
-      <!-- Social -->
-      <div class="hidden md:flex space-x-3 text-xl">
-        <a href="#" class="text-gray-600 hover:text-blue-600"><i class='bx bxl-facebook'></i></a>
-        <a href="#" class="text-gray-600 hover:text-pink-600"><i class='bx bxl-instagram'></i></a>
-        <a href="#" class="text-gray-600 hover:text-green-600"><i class='bx bxl-whatsapp'></i></a>
-        <a href="#" class="text-gray-600 hover:text-red-600"><i class='bx bxl-youtube'></i></a>
+      <div class="hidden md:flex space-x-4 text-2xl">
+        <a href="https://facebook.com" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://instagram.com" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="https://wa.me/919999999999" target="_blank"><i class='bx bxl-whatsapp'></i></a>
       </div>
-      <!-- Mobile menu btn -->
-      <button class="md:hidden text-3xl" onclick="toggleMenu()">☰</button>
+      <button id="menuBtn" class="md:hidden text-3xl"><i class='bx bx-menu'></i></button>
     </div>
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden flex-col bg-white shadow px-6 pb-4 md:hidden">
-      <a href="#home" class="py-2">Home</a>
-      <a href="#about" class="py-2">About</a>
-      <a href="#gallery" class="py-2">Gallery</a>
-      <a href="#contact" class="py-2">Contact</a>
+    <div id="mobileMenu" class="hidden flex-col bg-purple-700 text-white px-6 py-4 space-y-3">
+      <a href="#home" onclick="toggleMenu()">Home</a>
+      <a href="#about" onclick="toggleMenu()">About</a>
+      <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+      <a href="#contact" onclick="toggleMenu()">Contact</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="home" class="pt-28 pb-16 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 text-center">
-    <h2 class="text-4xl font-bold mb-4">Welcome to My Gallery</h2>
-    <p class="max-w-2xl mx-auto mb-6">Explore a collection of my best captured moments. Simple, elegant and mobile friendly gallery design.</p>
-    <a href="#gallery" class="px-6 py-3 bg-purple-600 text-white rounded-xl shadow-lg hover:scale-105 transition">See Gallery</a>
+  <!-- 🔹 Hero Section -->
+  <section id="home" class="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 text-center px-6">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">Welcome to My Beautiful Gallery</h2>
+    <p class="text-lg md:text-xl mb-6">Explore 100+ amazing photos with a modern design.</p>
+    <a href="#gallery" class="px-6 py-3 bg-purple-600 text-white rounded-xl shadow-lg hover:scale-105 transition">Explore Gallery</a>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="py-16 px-6 max-w-5xl mx-auto text-center">
-    <h2 class="text-3xl font-semibold mb-6">About Me</h2>
-    <p class="text-gray-600 leading-relaxed">Hi, I’m Bhupesh. This website is my personal gallery where I showcase photos arranged beautifully for easy viewing. Scroll down to explore more.</p>
+  <!-- 🔹 About Section -->
+  <section id="about" class="py-20 px-6 max-w-5xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-6">About Us</h2>
+    <p class="text-lg leading-relaxed">This is a modern online gallery website where you can see beautiful images, private password-protected images, and also contact us directly. Fully responsive and mobile friendly.</p>
   </section>
 
-  <!-- MINI GALLERY 1–10 -->
-  <section id="gallery" class="py-16 px-6 bg-gray-100">
+  <!-- 🔹 Gallery Section -->
+  <section id="gallery" class="py-16 px-6 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
     <h2 class="text-3xl font-semibold text-center mb-10">Gallery</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-      <img src="1.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(1)" />
-      <img src="2.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(2)" />
-      <img src="3.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(3)" />
-      <img src="4.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(4)" />
-      <img src="5.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(5)" />
-      <img src="6.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(6)" />
-      <img src="7.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(7)" />
-      <img src="8.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(8)" />
-      <img src="9.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(9)" />
-      <img src="10.jpg" class="rounded-xl shadow hover:scale-105 transition cursor-pointer" onclick="openGallery(10)" />
+      <div class="image-box"><img src="1.jpg" onclick="openGallery(0)" /></div>
+      <div class="image-box"><img src="2.jpg" onclick="openGallery(1)" /></div>
+      <div class="image-box"><img src="3.jpg" onclick="openGallery(2)" /></div>
+      <div class="image-box"><img src="4.jpg" onclick="openGallery(3)" /></div>
+      <div class="image-box"><img src="5.jpg" onclick="openGallery(4)" /></div>
+      <div class="image-box"><img src="6.jpg" onclick="openGallery(5)" /></div>
+      <div class="image-box"><img src="7.jpg" onclick="openGallery(6)" /></div>
+      <div class="image-box"><img src="8.jpg" onclick="openGallery(7)" /></div>
+      <div class="image-box"><img src="9.jpg" onclick="openGallery(8)" /></div>
+      <div class="image-box"><img src="10.jpg" onclick="openGallery(9)" /></div>
     </div>
 
+    <!-- See All Button -->
     <div class="text-center mt-10">
-      <button onclick="showAllGallery()" 
-        class="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium rounded-xl shadow-lg hover:scale-105 transition">
-        See All Photos
-      </button>
+      <button onclick="openAllGallery()" class="px-6 py-3 bg-pink-600 text-white rounded-xl shadow-lg hover:scale-105 transition">See All Photos</button>
+    </div>
+    <!-- Private Img Button -->
+    <div class="text-center mt-6">
+      <button onclick="showPasswordModal()" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl shadow-lg hover:scale-105 transition">🔒 Private Img</button>
     </div>
   </section>
 
-  <!-- ALL GALLERY POPUP -->
-  <div id="allGallery" class="hidden fixed inset-0 bg-black bg-opacity-90 overflow-y-auto p-6 z-50">
-    <button onclick="closeAllGallery()" 
-      class="fixed top-4 right-6 text-white text-3xl font-bold">&times;</button>
-    <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4 mt-10">
-      <!-- 11 to 100 images -->
+  <!-- 🔹 Fullscreen Gallery Modal -->
+  <div id="galleryModal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50">
+    <button onclick="closeGallery()" class="absolute top-4 right-6 text-white text-3xl font-bold">&times;</button>
+    <div class="overflow-x-auto whitespace-nowrap w-full h-full flex items-center justify-start space-x-4 px-6 py-10">
+      <img src="1.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="2.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="3.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="4.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="5.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="6.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="7.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="8.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="9.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+      <img src="10.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
+    </div>
+  </div>
+
+  <!-- 🔹 See All Photos Modal -->
+  <div id="allGalleryModal" class="hidden fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center z-50">
+    <button onclick="closeAllGallery()" class="absolute top-4 right-6 text-white text-3xl font-bold">&times;</button>
+    <div class="overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 p-6 w-full h-full">
       <script>
-        for (let i=1; i<=100; i++) {
-          document.write(`<img src="${i}.jpg" class='w-full mb-4 rounded-lg shadow hover:scale-105 transition cursor-pointer'/>`);
+        for (let i = 11; i <= 100; i++) {
+          document.write(`<img src="${i}.jpg" class="max-h-[200px] w-full object-cover rounded-lg shadow-md">`);
         }
       </script>
     </div>
   </div>
 
-  <!-- CONTACT -->
-  <section id="contact" class="py-16 px-6 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-semibold text-center mb-8">Contact Us</h2>
-    <form class="space-y-4">
-      <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"/>
-      <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"/>
-      <textarea rows="4" placeholder="Your Message" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
-      <button type="submit" class="px-6 py-3 bg-purple-600 text-white rounded-xl shadow hover:bg-purple-700 transition">Send Message</button>
+  <!-- 🔹 Password Modal -->
+  <div id="passwordModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center relative">
+      <h2 class="text-xl font-semibold mb-4">🔒 Enter Password</h2>
+      <input type="password" id="passwordInput" class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Enter password here..." />
+      <div class="flex justify-center space-x-4">
+        <button onclick="checkPassword()" class="px-6 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 transition">Submit</button>
+        <button onclick="closePasswordModal()" class="px-6 py-2 bg-gray-300 rounded-lg shadow hover:bg-gray-400 transition">Cancel</button>
+      </div>
+      <button onclick="closePasswordModal()" class="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl">&times;</button>
+    </div>
+  </div>
+
+  <!-- 🔹 Contact Section -->
+  <section id="contact" class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-6">Contact Us</h2>
+    <form class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+      <input type="text" placeholder="Your Name" class="w-full px-4 py-2 border rounded-lg">
+      <input type="email" placeholder="Your Email" class="w-full px-4 py-2 border rounded-lg">
+      <textarea placeholder="Your Message" class="w-full px-4 py-2 border rounded-lg"></textarea>
+      <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">Send Message</button>
     </form>
+    <!-- Social Media Below Contact -->
+    <div class="flex justify-center space-x-6 mt-6 text-3xl text-purple-700">
+      <a href="https://facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+      <a href="https://instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+      <a href="https://wa.me/919999999999" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+    </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-300 py-6 text-center">
-    <p>&copy; 2025 Bhupesh Gallery. All Rights Reserved.</p>
-    <div class="flex justify-center space-x-4 mt-2 text-xl">
-      <a href="#"><i class='bx bxl-facebook'></i></a>
-      <a href="#"><i class='bx bxl-instagram'></i></a>
-      <a href="#"><i class='bx bxl-whatsapp'></i></a>
-      <a href="#"><i class='bx bxl-youtube'></i></a>
-    </div>
+  <!-- 🔹 Footer -->
+  <footer class="bg-purple-600 text-white text-center py-4">
+    © 2025 My Gallery. All Rights Reserved.
   </footer>
 
-  <!-- JS -->
+  <!-- 🔹 JavaScript -->
   <script>
-    function toggleMenu(){
-      document.getElementById("mobileMenu").classList.toggle("hidden");
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    function toggleMenu(){ mobileMenu.classList.toggle("hidden"); }
+    menuBtn.addEventListener("click", toggleMenu);
+
+    function openGallery(index) {
+      document.getElementById("galleryModal").classList.remove("hidden");
+      const images = document.querySelectorAll("#galleryModal .fullscreen-img");
+      if (images[index]) {
+        images[index].scrollIntoView({ behavior: "smooth", inline: "center" });
+      }
     }
-    function showAllGallery(){
-      document.getElementById("allGallery").classList.remove("hidden");
+    function closeGallery() {
+      document.getElementById("galleryModal").classList.add("hidden");
     }
-    function closeAllGallery(){
-      document.getElementById("allGallery").classList.add("hidden");
+    function openAllGallery() {
+      document.getElementById("allGalleryModal").classList.remove("hidden");
     }
-    function openGallery(num){
-      showAllGallery();
-      setTimeout(()=>{
-        window.scrollTo({ top: (num*200), behavior:"smooth"});
-      },300);
+    function closeAllGallery() {
+      document.getElementById("allGalleryModal").classList.add("hidden");
+    }
+    function showPasswordModal() {
+      document.getElementById("passwordModal").classList.remove("hidden");
+      document.getElementById("passwordInput").value = "";
+      document.getElementById("passwordInput").focus();
+    }
+    function closePasswordModal() {
+      document.getElementById("passwordModal").classList.add("hidden");
+    }
+    function checkPassword() {
+      const pass = document.getElementById("passwordInput").value.trim();
+      closePasswordModal();
+      if (pass === "bhupesh gunja sah") {
+        window.open("pravit.jpg", "_blank");
+      } else {
+        alert("❌ गलत पासवर्ड !");
+      }
     }
   </script>
 
