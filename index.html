@@ -223,6 +223,93 @@
     }, 1500); // 1.5 सेकंड का delay ताकि Loading दिखे
   }
 </script>
+  <!-- Close All Photos Button -->
+<section class="py-6 px-6 text-center">
+  <button id="closePhotosBtn" onclick="closeAllPhotos()" 
+          class="hidden px-8 py-3 bg-gradient-to-r from-red-500 to-pink-600 text-white text-lg font-semibold rounded-full shadow-lg hover:scale-105 transition duration-300">
+    ❌ Close All Photos
+  </button>
+</section>
+
+<script>
+  function closeAllPhotos() {
+    const gallery = document.querySelector("#gallery .grid"); 
+    const modalContainer = document.querySelector("#galleryModal .overflow-x-auto");
+
+    // 11 से 100 वाली इमेज हटाना
+    for (let i = 100; i >= 11; i--) {
+      const imgBox = gallery.querySelector(`img[src='${i}.jpg']`);
+      if (imgBox) {
+        imgBox.parentElement.remove(); // गैलरी से हटाना
+      }
+
+      const modalImg = modalContainer.querySelector(`img[src='${i}.jpg']`);
+      if (modalImg) {
+        modalImg.remove(); // fullscreen modal से हटाना
+      }
+    }
+
+    // ❌ बटन को छुपाना और See More बटन वापस दिखाना
+    document.getElementById("closePhotosBtn").classList.add("hidden");
+    document.getElementById("seeMoreBtn").style.display = "inline-block";
+    document.getElementById("seeMoreBtn").innerHTML = "👀 See All Photos";
+  }
+
+  // loadMorePhotos() function में सिर्फ ये लाइन जोड़ दो ताकि Close बटन दिखे
+  // btn.style.display = "none"; वाली जगह पर ये लिखो:
+  // btn.style.display = "none";
+  document.getElementById("closePhotosBtn").classList.remove("hidden");
+</script>
+<!-- See All Photos Section -->
+<section class="py-10 px-6 text-center">
+  <button id="seeMoreBtn"
+          onclick="openNewGallery()" 
+          class="px-8 py-3 bg-gradient-to-r from-indigo-500 to-pink-500 text-white text-lg font-semibold rounded-full shadow-lg hover:scale-105 transition duration-300">
+    👀 See All Photos
+  </button>
+</section>
+
+<!-- New Gallery Container (पहले hidden रहेगा) -->
+<section id="newGallery" class="hidden py-16 px-6 bg-gradient-to-r from-yellow-100 via-pink-100 to-red-100">
+  <h2 class="text-3xl font-semibold text-center mb-10">All Photos</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6" id="newGalleryGrid">
+    <!-- यहाँ पर JS से फोटो add होंगी -->
+  </div>
+</section>
+
+<script>
+  function openNewGallery() {
+    const btn = document.getElementById("seeMoreBtn");
+    btn.innerHTML = "⏳ Loading...";
+
+    setTimeout(() => {
+      const newGallery = document.getElementById("newGallery");
+      const grid = document.getElementById("newGalleryGrid");
+
+      // 11 से 100 तक इमेज जोड़ना
+      for (let i = 11; i <= 100; i++) {
+        const div = document.createElement("div");
+        div.className = "image-box";
+        div.innerHTML = `<img src="${i}.jpg" onclick="openGallery(${i-1})" />`;
+        grid.appendChild(div);
+
+        // fullscreen modal में भी add करना
+        const modalContainer = document.querySelector("#galleryModal .overflow-x-auto");
+        const img = document.createElement("img");
+        img.src = `${i}.jpg`;
+        img.className = "fullscreen-img inline-block max-h-[90vh] rounded-lg";
+        modalContainer.appendChild(img);
+      }
+
+      // नई गैलरी दिखाना
+      newGallery.classList.remove("hidden");
+
+      // बटन hide कर देना
+      btn.style.display = "none";
+    }, 1500);
+  }
+</script>
+
 
 
 
@@ -378,6 +465,7 @@
 </body>
 
 </html>
+
 
 
 
