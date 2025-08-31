@@ -207,6 +207,66 @@
     }
   </script>
 
+  <!-- Contact Form -->
+<form id="contactForm" class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+  <input type="text" placeholder="Your Name" class="w-full px-4 py-2 border rounded-lg">
+  <input type="email" placeholder="Your Email" class="w-full px-4 py-2 border rounded-lg">
+  <textarea placeholder="Your Message" class="w-full px-4 py-2 border rounded-lg"></textarea>
+  <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+    Send Message
+  </button>
+</form>
+
+<!-- ✅ Success Message -->
+<p id="successMsg" class="hidden text-green-600 text-center font-medium mt-4 transition-all duration-500 transform opacity-0 translate-y-2">
+</p>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("successMsg");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = form.querySelector("input[placeholder='Your Name']").value.trim();
+    const email = form.querySelector("input[placeholder='Your Email']").value.trim();
+    const message = form.querySelector("textarea").value.trim();
+
+    if(name && email && message){
+      let whatsappMessage = `Hello, I am *${name}* (%0AEmail: ${email})%0A%0AMessage: ${message}`;
+      let whatsappURL = `https://wa.me/919153631109?text=${whatsappMessage}`;
+
+      // ✅ WhatsApp chat open
+      window.open(whatsappURL, "_blank");
+
+      // ✅ Success message with user's name
+      successMsg.textContent = `✅ Thank you ${name}! आपका मैसेज WhatsApp पर चला गया है।`;
+
+      // Show with animation
+      successMsg.classList.remove("hidden");
+      setTimeout(() => {
+        successMsg.classList.remove("opacity-0", "translate-y-2");
+        successMsg.classList.add("opacity-100", "translate-y-0");
+      }, 50);
+
+      // Reset form
+      form.reset();
+
+      // Hide after 5 sec with animation
+      setTimeout(() => {
+        successMsg.classList.remove("opacity-100", "translate-y-0");
+        successMsg.classList.add("opacity-0", "translate-y-2");
+        setTimeout(() => successMsg.classList.add("hidden"), 500);
+      }, 5000);
+
+    } else {
+      alert("⚠️ Please fill all fields!");
+    }
+  });
+</script>
+
+
 </body>
 </html>
+
 
