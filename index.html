@@ -1,302 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Gallery Website</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <style>
-    .image-box {
-      overflow: hidden;
-      border-radius: 18px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .image-box img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: 18px;
-      cursor: pointer;
-    }
-    .image-box:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-    }
-    .fullscreen-img {
-      transition: transform 0.3s ease;
-      cursor: grab;
-    }
-    .fullscreen-img:hover {
-      transform: scale(1.02);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Website</title>
+
+<style>
+body{margin:0;font-family:sans-serif;background:#f5f5f5}
+
+/* HEADER */
+header{
+display:flex;justify-content:space-between;
+background:#002147;color:#fff;padding:10px;
+position:sticky;top:0
+}
+nav a{color:white;margin:10px;text-decoration:none}
+
+/* SLIDER */
+.banner{height:300px;position:relative}
+.banner img{position:absolute;width:100%;height:100%;opacity:0;transition:1s}
+.banner img.active{opacity:1}
+
+/* SECTION */
+section{text-align:center;padding:30px}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:10px;
+}
+.gallery img{
+width:100%;border-radius:10px;cursor:pointer;
+}
+
+/* BUTTON */
+.btn{
+background:#002147;color:white;padding:10px;
+margin:5px;border:none;cursor:pointer
+}
+
+/* MODAL */
+#modal{
+display:none;position:fixed;
+width:100%;height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;align-items:center;
+}
+#modal img{max-width:90%}
+
+/* ADMIN PANEL */
+#adminPanel{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:white;
+padding:20px;
+overflow:auto;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+header{flex-direction:column}
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-  <!-- 🔹 Navbar -->
-  <header class="bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg fixed w-full top-0 left-0 z-50">
-    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
-      <h1 class="text-2xl font-bold"> My Gallery</h1>
-      <nav class="hidden md:flex space-x-6 text-lg">
-        <a href="#home" class="hover:text-yellow-300">Home</a>
-        <a href="#about" class="hover:text-yellow-300">About</a>
-        <a href="#gallery" class="hover:text-yellow-300">Gallery</a>
-        <a href="#contact" class="hover:text-yellow-300">Contact</a>
-      </nav>
-      <div class="hidden md:flex space-x-4 text-2xl">
-        <a href="https://www.facebook.com/share/1F7Sa4Jmku/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-        <a href="https://www.instagram.com/bhupeshg71?igsh=NGh3NHNjNzFmbzRm" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
-        <a href=" https://wa.me/qr/CETLNVWN3IU6J1" target="_blank"><i class='bx bxl-whatsapp'></i></a>
-      </div>
-      <button id="menuBtn" class="md:hidden text-3xl"><i class='bx bx-menu'></i></button>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden flex-col bg-purple-700 text-white px-6 py-4 space-y-3">
-      <a href="#home" onclick="toggleMenu()">Home</a>
-      <a href="#about" onclick="toggleMenu()">About</a>
-      <a href="#gallery" onclick="toggleMenu()">Gallery</a>
-      <a href="#contact" onclick="toggleMenu()">Contact</a>
-    </div>
-  </header>
+<body>
 
-  <!-- 🔹 Hero Section -->
-  <section id="home" class="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 text-center px-6">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Bk Gallery</h2>
-    <p class="text-lg md:text-xl mb-6">Explore 100+ amazing photos with a modern design.</p>
-    <a href="#gallery" class="px-6 py-3 bg-purple-600 text-white rounded-xl shadow-lg hover:scale-105 transition">Explore Gallery</a>
-  </section>
+<header>
+<h2>LOGO</h2>
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
 
-  <!-- 🔹 About Section -->
-  <section id="about" class="py-20 px-6 max-w-5xl mx-auto text-center">
-    <h2 class="text-3xl font-semibold mb-6">About Us</h2>
-    <p class="text-lg leading-relaxed"> "Welcome to my first website! We're sharing photos that showcase our cherished memories. As a coding enthusiast, I'm constantly learning and improving my skills. If you're looking to build a website, I'd love to collaborate. Reach out to me at 9153631109 or follow me on Facebook and Instagram."
-.</p>
-  </section>
+<!-- SLIDER -->
+<div class="banner">
+<img src="1.jpg" class="active">
+<img src="2.jpg">
+<img src="3.jpg">
+<img src="4.jpg">
+<img src="5.jpg">
+</div>
 
-  <!-- 🔹 Gallery Section -->
-  <section id="gallery" class="py-16 px-6 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
-    <h2 class="text-3xl font-semibold text-center mb-10">Gallery</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-      <div class="image-box"><img src="1.jpg" onclick="openGallery(0)" /></div>
-      <div class="image-box"><img src="2.jpg" onclick="openGallery(1)" /></div>
-      <div class="image-box"><img src="3.jpg" onclick="openGallery(2)" /></div>
-      <div class="image-box"><img src="4.jpg" onclick="openGallery(3)" /></div>
-      <div class="image-box"><img src="5.jpg" onclick="openGallery(4)" /></div>
-      <div class="image-box"><img src="6.jpg" onclick="openGallery(5)" /></div>
-      <div class="image-box"><img src="7.jpg" onclick="openGallery(6)" /></div>
-      <div class="image-box"><img src="8.jpg" onclick="openGallery(7)" /></div>
-      <div class="image-box"><img src="9.jpg" onclick="openGallery(8)" /></div>
-      <div class="image-box"><img src="10.jpg" onclick="openGallery(9)" /></div>
-    </div>
-
-    <!-- See All Button -->
-    <div class="text-center mt-10">
-      <button onclick="openAllGallery()" class="px-6 py-3 bg-pink-600 text-white rounded-xl shadow-lg hover:scale-105 transition">See All Photos</button>
-    </div>
-    <!-- Private Img Button -->
-    <div class="text-center mt-6">
-      <button onclick="showPasswordModal()" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl shadow-lg hover:scale-105 transition">🔒 Private Img</button>
-    </div>
-  </section>
-
-  <!-- 🔹 Fullscreen Gallery Modal -->
-  <div id="galleryModal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50">
-    <button onclick="closeGallery()" class="absolute top-4 right-6 text-white text-3xl font-bold">&times;</button>
-    <div class="overflow-x-auto whitespace-nowrap w-full h-full flex items-center justify-start space-x-4 px-6 py-10">
-      <img src="1.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="2.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="3.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="4.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="5.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="6.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="7.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="8.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="9.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-      <img src="10.jpg" class="fullscreen-img inline-block max-h-[90vh] rounded-lg" />
-    </div>
-  </div>
-
-  <!-- 🔹 See All Photos Modal -->
-  <div id="allGalleryModal" class="hidden fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center z-50">
-    <button onclick="closeAllGallery()" class="absolute top-4 right-6 text-white text-3xl font-bold">&times;</button>
-    <div class="overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 p-6 w-full h-full">
-      <script>
-        for (let i = 11; i <= 100; i++) {
-          document.write(`<img src="${i}.jpg" class="max-h-[200px] w-full object-cover rounded-lg shadow-md">`);
-        }
-      </script>
-    </div>
-  </div>
-
-  <!-- 🔹 Password Modal -->
-  <div id="passwordModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center relative">
-      <h2 class="text-xl font-semibold mb-4">🔒 Enter Password</h2>
-      <input type="password" id="passwordInput" class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Enter password here..." />
-      <div class="flex justify-center space-x-4">
-        <button onclick="checkPassword()" class="px-6 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 transition">Submit</button>
-        <button onclick="closePasswordModal()" class="px-6 py-2 bg-gray-300 rounded-lg shadow hover:bg-gray-400 transition">Cancel</button>
-      </div>
-      <button onclick="closePasswordModal()" class="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl">&times;</button>
-    </div>
-  </div>
-
-
-
-<!-- 🔹 Contact Section -->
-<section id="contact" class="py-20 px-6 max-w-5xl mx-auto">
-  <h2 class="text-3xl font-semibold text-center mb-6">Contact Us</h2>
-
-  <!-- Contact Form -->
-  <form id="contactForm" class="bg-white rounded-xl shadow-lg p-6 space-y-4">
-    <input id="name" type="text" placeholder="Your Name" required class="w-full px-4 py-2 border rounded-lg">
-    <input id="email" type="email" placeholder="Your Email" required class="w-full px-4 py-2 border rounded-lg">
-    <textarea id="message" placeholder="Your Message" required class="w-full px-4 py-2 border rounded-lg"></textarea>
-    <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
-      Send Message
-    </button>
-  </form>
-
-  <!-- Success Popup -->
-  <div id="successPopup" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300">
-    <div id="popupBox" class="bg-white p-6 rounded-xl shadow-lg text-center space-y-4 transform scale-90 opacity-0 transition-all duration-300">
-      <h2 class="text-xl font-semibold text-green-600">✅ Success!</h2>
-      <p id="successMessage"></p>
-      <div class="flex justify-center space-x-3">
-        <button onclick="goToWhatsApp()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
-          Go to WhatsApp
-        </button>
-        <button onclick="closePopup()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
-          OK
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Social Media Below Contact -->
-  <div class="flex justify-center space-x-6 mt-6 text-3xl text-purple-700">
-    <a href="https://www.facebook.com/share/1F7Sa4Jmku/" target="_blank"><i class='bx bxl-facebook'></i></a>
-    <a href="https://www.instagram.com/bhupeshg71?igsh=NGh3NHNjNzFmbzRm" target="_blank"><i class='bx bxl-instagram'></i></a>
-    <a href="https://wa.me/919153631109" target="_blank"><i class='bx bxl-whatsapp'></i></a>
-  </div>
+<!-- ABOUT -->
+<section id="about">
+<h2>About</h2>
+<p>Yahan apna school description likho</p>
 </section>
 
+<!-- GALLERY -->
+<section id="gallery">
+<h2>Gallery</h2>
+<div class="gallery" id="galleryBox"></div>
+<button class="btn" onclick="loadAll()">See All</button>
+</section>
+
+<!-- BUTTONS -->
+<section>
+<button class="btn" onclick="privateGallery()">Private</button>
+<button class="btn">Awards</button>
+<button class="btn">Summary</button>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact</h2>
+
+<input id="name" placeholder="Name"><br>
+<input id="mobile" placeholder="Mobile"><br>
+<input id="address" placeholder="Address"><br>
+<input id="email" placeholder="Email"><br>
+
+<button class="btn" onclick="sendWhatsApp()">Send</button>
+
+<br><br>
+
+<a href="tel:9153631109">
+<button class="btn">Call</button>
+</a>
+
+</section>
+
+<!-- SOCIAL -->
+<section>
+<a href="#"><button class="btn">Facebook</button></a>
+<a href="#"><button class="btn">Instagram</button></a>
+<a href="https://wa.me/9153631109"><button class="btn">WhatsApp</button></a>
+</section>
+
+<!-- MODAL -->
+<div id="modal" onclick="this.style.display='none'">
+<img id="modalImg">
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+<h2>Admin Panel</h2>
+
+<input type="file" id="imgInput">
+<button onclick="addImage()">Add Image</button>
+
+<br><br>
+<button onclick="closeAdmin()">Close</button>
+</div>
+
 <script>
-  const form = document.getElementById("contactForm");
-  const popup = document.getElementById("successPopup");
-  const popupBox = document.getElementById("popupBox");
-  const successMessage = document.getElementById("successMessage");
 
-  let whatsappLink = "";
+/* SLIDER */
+let slides=document.querySelectorAll(".banner img");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},10000);
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
+/* GALLERY */
+let images=[];
 
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let message = document.getElementById("message").value;
+function loadImages(n){
+let box=document.getElementById("galleryBox");
+box.innerHTML="";
+for(let i=0;i<n && i<images.length;i++){
+let img=document.createElement("img");
+img.src=images[i];
+img.onclick=()=>show(img.src);
+box.appendChild(img);
+}
+}
 
-    // WhatsApp number
-    let phoneNumber = "919153631109"; // +91 included
-    whatsappLink = `https://wa.me/${phoneNumber}?text=Hello,%20my%20name%20is%20${encodeURIComponent(name)}.%0AEmail:%20${encodeURIComponent(email)}%0AMessage:%20${encodeURIComponent(message)}`;
+/* DEFAULT IMAGES */
+for(let i=1;i<=10;i++){
+images.push("images/"+i+".jpg");
+}
+loadImages(10);
 
-    // Open WhatsApp immediately
-    window.open(whatsappLink, "_blank");
+function loadAll(){
+loadImages(images.length);
+}
 
-    // Show success popup with animation
-    successMessage.innerText = `Thanks ${name}, your message has been sent successfully!`;
-    popup.classList.remove("hidden");
-    setTimeout(() => {
-      popupBox.classList.remove("scale-90", "opacity-0");
-      popupBox.classList.add("scale-100", "opacity-100");
-    }, 10);
+/* MODAL */
+function show(src){
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImg").src=src;
+}
 
-    // Reset form
-    form.reset();
-  });
+/* PRIVATE */
+function privateGallery(){
+let p=prompt("Password?");
+if(p==="gunjanbhupeshshah"){
+alert("Private Opened");
+}else{
+alert("Wrong Password");
+}
+}
 
-  function goToWhatsApp() {
-    if (whatsappLink) {
-      window.open(whatsappLink, "_blank");
-    }
-  }
+/* WHATSAPP */
+function sendWhatsApp(){
+let msg=`Name:${name.value}%0AMobile:${mobile.value}%0AAddress:${address.value}%0AEmail:${email.value}`;
+window.open(`https://wa.me/9153631109?text=${msg}`);
+}
 
-  function closePopup() {
-    // Fade out animation
-    popupBox.classList.remove("scale-100", "opacity-100");
-    popupBox.classList.add("scale-90", "opacity-0");
-    setTimeout(() => {
-      popup.classList.add("hidden");
-    }, 300); // match duration
-  }
+/* ADMIN ACCESS (HIDDEN) */
+document.body.addEventListener("dblclick",()=>{
+let code=prompt("Admin Code");
+if(code==="admin123"){
+document.getElementById("adminPanel").style.display="block";
+}
+});
+
+/* ADMIN ADD IMAGE (DEMO ONLY) */
+function addImage(){
+let file=document.getElementById("imgInput").files[0];
+if(file){
+let url=URL.createObjectURL(file);
+images.push(url);
+loadImages(images.length);
+}
+}
+
+function closeAdmin(){
+document.getElementById("adminPanel").style.display="none";
+}
+
 </script>
-
-
-
-
-
-
-
-
-
-
-  
-
-  <!-- 🔹 Footer -->
-  <footer class="bg-purple-600 text-white text-center py-4">
-    © 2025 My Gallery. All Rights Reserved.Bhupesh g
-  </footer>
-
-  <!-- 🔹 JavaScript -->
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
-    function toggleMenu(){ mobileMenu.classList.toggle("hidden"); }
-    menuBtn.addEventListener("click", toggleMenu);
-
-    function openGallery(index) {
-      document.getElementById("galleryModal").classList.remove("hidden");
-      const images = document.querySelectorAll("#galleryModal .fullscreen-img");
-      if (images[index]) {
-        images[index].scrollIntoView({ behavior: "smooth", inline: "center" });
-      }
-    }
-    function closeGallery() {
-      document.getElementById("galleryModal").classList.add("hidden");
-    }
-    function openAllGallery() {
-      document.getElementById("allGalleryModal").classList.remove("hidden");
-    }
-    function closeAllGallery() {
-      document.getElementById("allGalleryModal").classList.add("hidden");
-    }
-    function showPasswordModal() {
-      document.getElementById("passwordModal").classList.remove("hidden");
-      document.getElementById("passwordInput").value = "";
-      document.getElementById("passwordInput").focus();
-    }
-    function closePasswordModal() {
-      document.getElementById("passwordModal").classList.add("hidden");
-    }
-    function checkPassword() {
-      const pass = document.getElementById("passwordInput").value.trim();
-      closePasswordModal();
-      if (pass === "bhupesh gunja sah") {
-        window.open("pravit.jpg", "_blank");
-      } else {
-        alert("❌ गलत पासवर्ड !");
-      }
-    }
-  </script>
-
-
 
 </body>
 </html>
-
-
-
-
-
