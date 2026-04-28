@@ -1,168 +1,163 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Website</title>
+<title>School Gallery</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{margin:0;font-family:sans-serif;background:#f5f5f5}
+body{font-family:sans-serif}
 
 /* HEADER */
 header{
-display:flex;justify-content:space-between;
-background:#002147;color:#fff;padding:10px;
-position:sticky;top:0
+position:sticky;top:0;z-index:100;
 }
-nav a{color:white;margin:10px;text-decoration:none}
 
-/* SLIDER */
-.banner{height:300px;position:relative}
-.banner img{position:absolute;width:100%;height:100%;opacity:0;transition:1s}
+/* BANNER */
+.banner{position:relative;height:300px;overflow:hidden}
+.banner img{
+position:absolute;
+width:100%;height:100%;
+object-fit:cover;
+opacity:0;
+transition:1s;
+}
 .banner img.active{opacity:1}
-
-/* SECTION */
-section{text-align:center;padding:30px}
 
 /* GALLERY */
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:10px;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
 }
 .gallery img{
-width:100%;border-radius:10px;cursor:pointer;
+width:100%;
+border-radius:15px;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
 }
-
-/* BUTTON */
-.btn{
-background:#002147;color:white;padding:10px;
-margin:5px;border:none;cursor:pointer
+.gallery img:hover{
+transform:scale(1.05);
 }
 
 /* MODAL */
 #modal{
-display:none;position:fixed;
-width:100%;height:100%;
-background:rgba(0,0,0,0.9);
-justify-content:center;align-items:center;
-}
-#modal img{max-width:90%}
-
-/* ADMIN PANEL */
-#adminPanel{
 display:none;
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
-background:white;
-padding:20px;
-overflow:auto;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+#modal img{
+max-width:90%;
+border-radius:10px;
 }
 
-/* MOBILE */
-@media(max-width:600px){
-header{flex-direction:column}
+/* INPUT */
+input{
+width:250px;
 }
 </style>
+
 </head>
 
-<body>
+<body class="bg-gray-100">
 
-<header>
-<h2>LOGO</h2>
+<!-- HEADER -->
+
+<header class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 flex justify-between">
+<h2 class="text-xl font-bold">My School</h2>
 <nav>
-<a href="#">Home</a>
-<a href="#about">About</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
+<a href="#" class="mx-2">Home</a>
+<a href="#gallery" class="mx-2">Gallery</a>
+<a href="#contact" class="mx-2">Contact</a>
 </nav>
 </header>
 
-<!-- SLIDER -->
+<!-- BANNER -->
+
 <div class="banner">
-<img src="1.jpg" class="active">
-<img src="2.jpg">
-<img src="3.jpg">
-<img src="4.jpg">
-<img src="5.jpg">
+<img src="b1.jpg" class="active">
+<img src="b2.jpg">
+<img src="b3.jpg">
+<img src="b4.jpg">
+<img src="b5.jpg">
 </div>
 
 <!-- ABOUT -->
-<section id="about">
-<h2>About</h2>
-<p>Yahan apna school description likho</p>
+
+<section class="p-6 text-center">
+<h2 class="text-2xl font-bold mb-2">About</h2>
+<p>Yahan apne school ya gallery ka description likho.</p>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery">
-<h2>Gallery</h2>
-<div class="gallery" id="galleryBox"></div>
-<button class="btn" onclick="loadAll()">See All</button>
-</section>
 
-<!-- BUTTONS -->
-<section>
-<button class="btn" onclick="privateGallery()">Private</button>
-<button class="btn">Awards</button>
-<button class="btn">Summary</button>
+<section id="gallery" class="p-6 text-center">
+<h2 class="text-2xl font-bold mb-4">Gallery</h2>
+
+<div id="galleryBox" class="gallery"></div>
+
+<div class="mt-5 space-x-2">
+<button onclick="loadAll()" class="bg-purple-600 text-white px-4 py-2 rounded">See All</button>
+<button onclick="privateGallery()" class="bg-pink-600 text-white px-4 py-2 rounded">Private</button>
+<button onclick="loadAwards()" class="bg-blue-600 text-white px-4 py-2 rounded">Awards</button>
+</div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-<h2>Contact</h2>
 
-<input id="name" placeholder="Name"><br>
-<input id="mobile" placeholder="Mobile"><br>
-<input id="address" placeholder="Address"><br>
-<input id="email" placeholder="Email"><br>
+<section id="contact" class="p-6 text-center">
+<h2 class="text-2xl font-bold mb-4">Contact</h2>
 
-<button class="btn" onclick="sendWhatsApp()">Send</button>
+<input id="name" placeholder="Name" class="border p-2 m-1"><br> <input id="mobile" placeholder="Mobile" class="border p-2 m-1"><br> <input id="address" placeholder="Address" class="border p-2 m-1"><br> <input id="email" placeholder="Email" class="border p-2 m-1"><br>
 
-<br><br>
-
-<a href="tel:9153631109">
-<button class="btn">Call</button>
-</a>
+<button onclick="sendWhatsApp()" class="bg-green-600 text-white px-4 py-2 rounded mt-2">Send</button>
 
 </section>
 
-<!-- SOCIAL -->
-<section>
-<a href="#"><button class="btn">Facebook</button></a>
-<a href="#"><button class="btn">Instagram</button></a>
-<a href="https://wa.me/9153631109"><button class="btn">WhatsApp</button></a>
-</section>
+<!-- FOOTER -->
+
+<footer class="bg-purple-600 text-white text-center p-3">
+© 2026 My School | All Rights Reserved
+</footer>
 
 <!-- MODAL -->
+
 <div id="modal" onclick="this.style.display='none'">
 <img id="modalImg">
 </div>
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel">
-<h2>Admin Panel</h2>
-
-<input type="file" id="imgInput">
-<button onclick="addImage()">Add Image</button>
-
-<br><br>
-<button onclick="closeAdmin()">Close</button>
-</div>
-
 <script>
 
-/* SLIDER */
+/* ================= BANNER SLIDER ================= */
 let slides=document.querySelectorAll(".banner img");
 let i=0;
 setInterval(()=>{
 slides[i].classList.remove("active");
 i=(i+1)%slides.length;
 slides[i].classList.add("active");
-},10000);
+},3000);
 
-/* GALLERY */
+/* ================= GALLERY ================= */
 let images=[];
+
+// DEFAULT LOAD (1–1000)
+function loadDefault(){
+images=[];
+for(let i=1;i<=1000;i++){
+images.push("images/"+i+".jpg");
+}
+loadImages(20);
+}
+loadDefault();
 
 function loadImages(n){
 let box=document.getElementById("galleryBox");
@@ -175,58 +170,43 @@ box.appendChild(img);
 }
 }
 
-/* DEFAULT IMAGES */
-for(let i=1;i<=10;i++){
-images.push("images/"+i+".jpg");
-}
-loadImages(10);
-
 function loadAll(){
 loadImages(images.length);
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 function show(src){
 document.getElementById("modal").style.display="flex";
 document.getElementById("modalImg").src=src;
 }
 
-/* PRIVATE */
+/* ================= PRIVATE ================= */
 function privateGallery(){
-let p=prompt("Password?");
+let p=prompt("Enter Password");
 if(p==="gunjanbhupeshshah"){
-alert("Private Opened");
+images=[];
+for(let i=1;i<=50;i++){
+images.push("private/p"+i+".jpg");
+}
+loadImages(images.length);
 }else{
 alert("Wrong Password");
 }
 }
 
-/* WHATSAPP */
+/* ================= AWARDS ================= */
+function loadAwards(){
+images=[];
+for(let i=1;i<=100;i++){
+images.push("awards/a"+i+".jpg");
+}
+loadImages(images.length);
+}
+
+/* ================= WHATSAPP ================= */
 function sendWhatsApp(){
 let msg=`Name:${name.value}%0AMobile:${mobile.value}%0AAddress:${address.value}%0AEmail:${email.value}`;
 window.open(`https://wa.me/9153631109?text=${msg}`);
-}
-
-/* ADMIN ACCESS (HIDDEN) */
-document.body.addEventListener("dblclick",()=>{
-let code=prompt("Admin Code");
-if(code==="admin123"){
-document.getElementById("adminPanel").style.display="block";
-}
-});
-
-/* ADMIN ADD IMAGE (DEMO ONLY) */
-function addImage(){
-let file=document.getElementById("imgInput").files[0];
-if(file){
-let url=URL.createObjectURL(file);
-images.push(url);
-loadImages(images.length);
-}
-}
-
-function closeAdmin(){
-document.getElementById("adminPanel").style.display="none";
 }
 
 </script>
