@@ -1,213 +1,346 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Gallery</title>
+<title>Bhupesh Portfolio</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body{font-family:sans-serif}
 
-/* HEADER */
-header{
-position:sticky;top:0;z-index:100;
+/* ================= GLOBAL ================= */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+body{
+background:#0f172a;
+color:white;
 }
 
-/* BANNER */
-.banner{position:relative;height:300px;overflow:hidden}
-.banner img{
+/* ================= NAV ================= */
+nav{
+position:sticky;
+top:0;
+display:flex;
+justify-content:space-between;
+padding:15px 30px;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+nav h2{color:#00f2fe;}
+nav ul{
+display:flex;
+list-style:none;
+}
+nav ul li{
+margin:0 15px;
+cursor:pointer;
+transition:0.3s;
+}
+nav ul li:hover{
+color:#00f2fe;
+}
+
+/* ================= SECTION ================= */
+section{
+padding:70px 20px;
+text-align:center;
+}
+
+/* ================= BANNER ================= */
+.banner{
+background:linear-gradient(135deg,#00f2fe,#4facfe);
+padding:80px 20px;
+}
+.banner h1{
+font-size:40px;
+animation:fade 2s ease;
+}
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;}
+}
+
+/* ================= PROFILE ================= */
+.profile-box{
+position:relative;
+width:260px;
+margin:auto;
+}
+.profile-box img{
+width:100%;
+border-radius:50%;
+border:4px solid #00f2fe;
+}
+
+/* Animated circles */
+.icon{
 position:absolute;
-width:100%;height:100%;
-object-fit:cover;
-opacity:0;
-transition:1s;
+width:60px;
+height:60px;
+border-radius:50%;
+background:white;
+color:black;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:0.3s;
+animation:float 3s infinite alternate;
 }
-.banner img.active{opacity:1}
+.icon:hover{
+transform:scale(1.2);
+}
+@keyframes float{
+from{transform:translateY(-10px);}
+to{transform:translateY(10px);}
+}
 
-/* GALLERY */
+/* positions */
+.i1{top:-20px;left:40%;}
+.i2{bottom:-20px;left:40%;}
+.i3{left:-30px;top:40%;}
+.i4{right:-30px;top:40%;}
+
+/* ================= GALLERY ================= */
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:15px;
+padding:20px;
 }
 .gallery img{
 width:100%;
-border-radius:15px;
+border-radius:10px;
 cursor:pointer;
 transition:0.3s;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
 }
 .gallery img:hover{
 transform:scale(1.05);
 }
 
-/* MODAL */
-#modal{
+/* ================= VIEWER ================= */
+.viewer{
 display:none;
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.9);
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
 justify-content:center;
 align-items:center;
-z-index:1000;
+flex-direction:column;
+z-index:9999;
 }
-#modal img{
+.viewer img{
 max-width:90%;
-border-radius:10px;
+max-height:80%;
+}
+.close{
+position:absolute;
+top:20px;
+right:30px;
+font-size:30px;
+cursor:pointer;
 }
 
-/* INPUT */
+/* ================= BUTTON ================= */
+.btn{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00f2fe,#4facfe);
+color:white;
+cursor:pointer;
+margin:10px;
+transition:0.3s;
+}
+.btn:hover{
+transform:scale(1.1);
+}
+
+/* ================= CONTACT ================= */
+.form-box{
+max-width:400px;
+margin:auto;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,255,255,0.2);
+}
 input{
-width:250px;
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
 }
-</style>
 
+/* ================= SOCIAL ================= */
+.social a{
+display:inline-block;
+margin:10px;
+padding:10px 15px;
+background:#00f2fe;
+border-radius:30px;
+color:black;
+text-decoration:none;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:600px){
+.banner h1{font-size:25px;}
+}
+
+</style>
 </head>
 
-<body class="bg-gray-100">
+<body oncontextmenu="return false">
 
-<!-- HEADER -->
-
-<header class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 flex justify-between">
-<h2 class="text-xl font-bold">My School</h2>
+<!-- 1 HOME -->
 <nav>
-<a href="#" class="mx-2">Home</a>
-<a href="#gallery" class="mx-2">Gallery</a>
-<a href="#contact" class="mx-2">Contact</a>
+<h2>LOGO</h2>
+<ul>
+<li onclick="scrollTo(0,0)">Home</li>
+<li onclick="document.getElementById('gallery').scrollIntoView()">Gallery</li>
+<li onclick="document.getElementById('contact').scrollIntoView()">Contact</li>
+</ul>
 </nav>
-</header>
 
-<!-- BANNER -->
-
-<div class="banner">
-<img src="b1.jpg" class="active">
-<img src="b2.jpg">
-<img src="b3.jpg">
-<img src="b4.jpg">
-<img src="b5.jpg">
-</div>
-
-<!-- ABOUT -->
-
-<section class="p-6 text-center">
-<h2 class="text-2xl font-bold mb-2">About</h2>
-<p>Yahan apne school ya gallery ka description likho.</p>
+<!-- 2 WELCOME -->
+<section class="banner">
+<h1>Welcome Bhupesh Website</h1>
+<p>Fast • Secure • Professional</p>
 </section>
 
-<!-- GALLERY -->
+<!-- 3 PROFILE -->
+<section>
+<div class="profile-box">
 
-<section id="gallery" class="p-6 text-center">
-<h2 class="text-2xl font-bold mb-4">Gallery</h2>
+<img src="img2.jpg">
 
-<div id="galleryBox" class="gallery"></div>
+<div class="icon i1" onclick="call()">📞</div>
+<div class="icon i2" onclick="whatsapp()">💬</div>
+<div class="icon i3">📘</div>
+<div class="icon i4">📸</div>
 
-<div class="mt-5 space-x-2">
-<button onclick="loadAll()" class="bg-purple-600 text-white px-4 py-2 rounded">See All</button>
-<button onclick="privateGallery()" class="bg-pink-600 text-white px-4 py-2 rounded">Private</button>
-<button onclick="loadAwards()" class="bg-blue-600 text-white px-4 py-2 rounded">Awards</button>
 </div>
 </section>
 
-<!-- CONTACT -->
-
-<section id="contact" class="p-6 text-center">
-<h2 class="text-2xl font-bold mb-4">Contact</h2>
-
-<input id="name" placeholder="Name" class="border p-2 m-1"><br> <input id="mobile" placeholder="Mobile" class="border p-2 m-1"><br> <input id="address" placeholder="Address" class="border p-2 m-1"><br> <input id="email" placeholder="Email" class="border p-2 m-1"><br>
-
-<button onclick="sendWhatsApp()" class="bg-green-600 text-white px-4 py-2 rounded mt-2">Send</button>
-
+<!-- 4 GALLERY -->
+<section id="gallery">
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="1.jpg" onclick="openImg(this)">
+<img src="2.jpg" onclick="openImg(this)">
+<img src="3.jpg" onclick="openImg(this)">
+<img src="4.jpg" onclick="openImg(this)">
+<img src="5.jpg" onclick="openImg(this)">
+</div>
+<button class="btn" onclick="loadAll()">All Photos</button>
 </section>
 
-<!-- FOOTER -->
+<!-- 5 ALL IMAGES -->
+<section>
+<div class="gallery" id="all"></div>
+</section>
 
-<footer class="bg-purple-600 text-white text-center p-3">
-© 2026 My School | All Rights Reserved
-</footer>
+<!-- 6 AWARDS -->
+<section>
+<h2>Awards</h2>
+<button class="btn" onclick="loadAwards()">View Awards</button>
+<div class="gallery" id="award"></div>
+</section>
 
-<!-- MODAL -->
+<!-- 7 CONTACT -->
+<section id="contact">
+<h2>Contact</h2>
+<div class="form-box">
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<input id="email" placeholder="Email">
+<button class="btn" onclick="send()">Send</button>
+</div>
+</section>
 
-<div id="modal" onclick="this.style.display='none'">
-<img id="modalImg">
+<!-- 8 SOCIAL -->
+<section>
+<div class="social">
+<a href="tel:9153631109">Call</a>
+<a href="https://wa.me/9153631109">WhatsApp</a>
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+</div>
+<p>Email: kbhupesh060@gmail.com</p>
+</section>
+
+<!-- VIEWER -->
+<div class="viewer" id="viewer">
+<span class="close" onclick="closeImg()">✖</span>
+<img id="big">
 </div>
 
 <script>
 
-/* ================= BANNER SLIDER ================= */
-let slides=document.querySelectorAll(".banner img");
-let i=0;
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},3000);
-
-/* ================= GALLERY ================= */
-let images=[];
-
-// DEFAULT LOAD (1–1000)
-function loadDefault(){
-images=[];
-for(let i=1;i<=1000;i++){
-images.push("images/"+i+".jpg");
+/* IMAGE VIEW */
+function openImg(e){
+document.getElementById("viewer").style.display="flex";
+document.getElementById("big").src=e.src;
 }
-loadImages(20);
+function closeImg(){
+viewer.style.display="none";
 }
-loadDefault();
 
-function loadImages(n){
-let box=document.getElementById("galleryBox");
+/* LOAD ALL */
+function loadAll(){
+let box=document.getElementById("all");
 box.innerHTML="";
-for(let i=0;i<n && i<images.length;i++){
+for(let i=1;i<=50;i++){
 let img=document.createElement("img");
-img.src=images[i];
-img.onclick=()=>show(img.src);
+img.src=i+".jpg";
+img.onclick=function(){openImg(this)};
 box.appendChild(img);
 }
 }
 
-function loadAll(){
-loadImages(images.length);
-}
-
-/* ================= MODAL ================= */
-function show(src){
-document.getElementById("modal").style.display="flex";
-document.getElementById("modalImg").src=src;
-}
-
-/* ================= PRIVATE ================= */
-function privateGallery(){
-let p=prompt("Enter Password");
-if(p==="gunjanbhupeshshah"){
-images=[];
-for(let i=1;i<=50;i++){
-images.push("private/p"+i+".jpg");
-}
-loadImages(images.length);
-}else{
-alert("Wrong Password");
-}
-}
-
-/* ================= AWARDS ================= */
+/* AWARDS */
 function loadAwards(){
-images=[];
-for(let i=1;i<=100;i++){
-images.push("awards/a"+i+".jpg");
+let box=document.getElementById("award");
+box.innerHTML="";
+for(let i=1;i<=30;i++){
+let img=document.createElement("img");
+img.src="p"+i+".jpg";
+img.onclick=function(){openImg(this)};
+box.appendChild(img);
 }
-loadImages(images.length);
 }
 
-/* ================= WHATSAPP ================= */
-function sendWhatsApp(){
-let msg=`Name:${name.value}%0AMobile:${mobile.value}%0AAddress:${address.value}%0AEmail:${email.value}`;
+/* CONTACT WHATSAPP */
+function send(){
+let n=name.value;
+let p=phone.value;
+let e=email.value;
+let msg=`Name:${n}%0APhone:${p}%0AEmail:${e}`;
 window.open(`https://wa.me/9153631109?text=${msg}`);
 }
+
+/* QUICK ACTIONS */
+function call(){window.location.href="tel:9153631109";}
+function whatsapp(){window.open("https://wa.me/9153631109");}
+
+/* BASIC SECURITY */
+document.onkeydown=function(e){
+if(e.keyCode==123){return false;} // F12
+if(e.ctrlKey && e.shiftKey && e.keyCode==73){return false;} // inspect
+};
 
 </script>
 
