@@ -8,12 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* GLOBAL */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
 body{background:#0f172a;color:white;}
 
-/* NAV */
 nav{
 position:sticky;top:0;display:flex;justify-content:space-between;
 padding:15px 30px;background:rgba(0,0,0,0.7);
@@ -24,10 +21,8 @@ nav ul{display:flex;list-style:none;}
 nav ul li{margin:0 15px;cursor:pointer;}
 nav ul li:hover{color:#00f2fe;}
 
-/* SECTION */
 section{padding:70px 20px;text-align:center;}
 
-/* BANNER */
 .banner{
 background:linear-gradient(135deg,#00f2fe,#4facfe);
 padding:80px 20px;
@@ -36,43 +31,42 @@ padding:80px 20px;
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* PROFILE */
-.profile-box{position:relative;width:260px;margin:auto;}
+.profile-box{position:relative;width:300px;margin:auto;}
 
 .profile-img{
 width:100%;
 border-radius:50%;
 border:5px solid #00f2fe;
-box-shadow:0 0 25px rgba(0,255,255,0.6);
+box-shadow:0 0 30px rgba(0,255,255,0.7);
 object-fit:cover;
 }
 
-/* ICONS */
+/* ICON */
 .icon{
 position:absolute;
-width:60px;height:60px;border-radius:50%;
+width:45px;height:45px;
 background:white;color:black;
 display:flex;align-items:center;justify-content:center;
-cursor:pointer;transition:0.3s;
+border-radius:50%;
+cursor:pointer;
 animation:float 3s infinite alternate;
 }
-.icon:hover{transform:scale(1.2);}
 @keyframes float{from{transform:translateY(-10px);}to{transform:translateY(10px);}}
 
-.left{left:-30px;top:40%;}
-.right{right:-30px;top:40%;}
+.left{right:-25px;top:40%;}
+.right{left:-25px;top:40%;}
 
 /* GALLERY */
 .gallery{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:12px;
-padding:20px;
+gap:12px;padding:20px;
 }
 .gallery img{
 width:100%;
 border-radius:10px;
 cursor:pointer;
-transition:0.4s;
+transition:0.3s;
 }
 .gallery img:hover{transform:scale(1.08);}
 
@@ -88,39 +82,33 @@ top:0;left:0;width:100%;height:100%;
 background:black;
 justify-content:center;
 align-items:center;
-z-index:9999;
 }
-.viewer img{
-max-width:90%;
-max-height:80%;
-animation:zoom 0.4s;
-}
-@keyframes zoom{
-from{transform:scale(0.5);opacity:0;}
-to{transform:scale(1);}
-}
+.viewer img{max-width:90%;max-height:80%;}
 .close{
 position:absolute;
-top:20px;
-right:30px;
+top:20px;right:30px;
 font-size:30px;
 cursor:pointer;
 }
 
 /* BUTTON */
 .btn{
-padding:12px 25px;border:none;border-radius:30px;
+padding:12px 25px;
+border:none;border-radius:30px;
 background:linear-gradient(45deg,#00f2fe,#4facfe);
-color:white;cursor:pointer;margin:10px;
+color:white;margin:10px;
+cursor:pointer;
 }
 
 /* CONTACT */
 .form-box{
-max-width:400px;margin:auto;background:#1e293b;
+max-width:400px;margin:auto;
+background:#1e293b;
 padding:20px;border-radius:15px;
 }
 input{
-width:100%;padding:12px;margin:10px 0;
+width:100%;
+padding:12px;margin:10px 0;
 border:none;border-radius:8px;
 }
 
@@ -129,16 +117,15 @@ border:none;border-radius:8px;
 display:inline-block;margin:10px;
 padding:10px 15px;
 background:#00f2fe;
-border-radius:30px;color:black;
+border-radius:30px;
+color:black;
 text-decoration:none;
 }
-
 </style>
 </head>
 
 <body oncontextmenu="return false">
 
-<!-- NAV -->
 <nav>
 <h2>Bhupesh</h2>
 <ul>
@@ -148,25 +135,19 @@ text-decoration:none;
 </ul>
 </nav>
 
-<!-- BANNER -->
 <section class="banner">
 <h1>Welcome Bhupesh Website</h1>
 <p>Fast • Secure • Professional</p>
 </section>
 
-<!-- PROFILE -->
 <section>
 <div class="profile-box">
-
 <img src="img2.jpg" class="profile-img">
-
 <div class="icon left" onclick="whatsapp()">💬</div>
 <div class="icon right" onclick="call()">📞</div>
-
 </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery">
 <h2>Gallery</h2>
 <div class="gallery">
@@ -181,7 +162,6 @@ text-decoration:none;
 <button class="btn" onclick="openAwards()">View Awards</button>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
 <h2>Contact</h2>
 <div class="form-box">
@@ -192,26 +172,22 @@ text-decoration:none;
 </div>
 </section>
 
-<!-- SOCIAL -->
 <section>
 <div class="social">
 <a href="tel:9153631109">Call</a>
 <a href="https://wa.me/9153631109">WhatsApp</a>
 <a href="https://www.facebook.com/share/1BFTx9oihV/">Facebook</a>
-<a href="https://www.instagram.com/bhupeshg71?utm_source=qr&igsh=NGh3NHNjNzFmbzRm">Instagram</a>
+<a href="https://www.instagram.com/bhupeshg71">Instagram</a>
 </div>
 <p>Email: kbhupesh060@gmail.com</p>
 </section>
 
-<!-- VIEWER -->
 <div class="viewer" id="viewer">
 <span class="close" onclick="closeImg()">✖</span>
 <img id="big">
 </div>
 
 <script>
-
-/* IMAGE VIEW */
 function openImg(e){
 viewer.style.display="flex";
 big.src=e.src;
@@ -220,48 +196,47 @@ function closeImg(){
 viewer.style.display="none";
 }
 
-/* OPEN ALL (NEW PAGE STYLE) */
 function openAll(){
 let win=window.open("");
 win.document.write(`
 <body style="background:#0f172a;color:white;text-align:center;font-family:Poppins">
-<h1 style="animation:fade 2s infinite alternate">Bhupesh G Gallery</h1>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;padding:20px">
-${[...Array(95)].map((_,i)=>`<img src="${i+6}.jpg" style="width:100%;border-radius:10px">`).join("")}
+<h1>Bhupesh G Gallery</h1>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;padding:20px">
+${[...Array(95)].map((_,i)=>`<img src="${i+6}.jpg" onclick="openImg(this)" style="width:100%">`).join("")}
 </div>
+<script>
+function openImg(e){document.body.innerHTML='<img src="'+e.src+'" style="width:100%">'}
+<\/script>
 </body>
 `);
 }
 
-/* AWARDS */
 function openAwards(){
 let win=window.open("");
 win.document.write(`
 <body style="background:#0f172a;color:white;text-align:center;font-family:Poppins">
 <h1>Bhupesh Awards</h1>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;padding:20px">
-${[...Array(30)].map((_,i)=>`<img src="p${i+1}.jpg" style="width:100%;border-radius:10px">`).join("")}
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;padding:20px">
+${[...Array(30)].map((_,i)=>`<img src="p${i+1}.jpg" onclick="openImg(this)" style="width:100%">`).join("")}
 </div>
+<script>
+function openImg(e){document.body.innerHTML='<img src="'+e.src+'" style="width:100%">'}
+<\/script>
 </body>
 `);
 }
 
-/* CONTACT */
 function send(){
 let msg=`Name:${name.value}%0APhone:${phone.value}%0AEmail:${email.value}`;
 window.open(`https://wa.me/9153631109?text=${msg}`);
 }
 
-/* QUICK ACTION */
 function call(){location.href="tel:9153631109";}
 function whatsapp(){window.open("https://wa.me/9153631109");}
 
-/* BASIC PROTECTION */
 document.onkeydown=function(e){
 if(e.keyCode==123) return false;
-if(e.ctrlKey && e.shiftKey && e.keyCode==73) return false;
 };
-
 </script>
 
 </body>
